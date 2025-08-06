@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Mail, Linkedin, Send, MapPin, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,16 +24,80 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Check if EmailJS is properly configured
+    if (EMAILJS_CONFIG.SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID') {
+      toast({
+        title: "EmailJS not configured",
+        description: "Please set up EmailJS to enable contact form. Check EMAILJS_SETUP.md for instructions.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
+    try {
+      console.log('Attempting to send email...');
+      
+      // Method 1: Try EmailJS first
+      try {
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        
+        const result = await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            to_name: 'Akshay K A',
+          },
+          EMAILJS_CONFIG.PUBLIC_KEY
+        );
 
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+        console.log('EmailJS result:', result);
+
+        if (result.status === 200) {
+          toast({
+            title: "Message sent successfully!",
+            description: "Thank you for your message. I'll get back to you soon.",
+          });
+          setFormData({ name: '', email: '', message: '' });
+          setIsSubmitting(false);
+          return;
+        }
+      } catch (emailjsError) {
+        console.error('EmailJS failed:', emailjsError);
+        
+        // Method 2: Fallback to direct email link
+        const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+        const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+        const mailtoLink = `mailto:akshayanoop2014@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Open email client
+        window.open(mailtoLink);
+        
+        toast({
+          title: "Email client opened",
+          description: "EmailJS failed, but your email client should open with a pre-filled message. Please send it manually.",
+        });
+        
+        setFormData({ name: '', email: '', message: '' });
+        setIsSubmitting(false);
+        return;
+      }
+
+    } catch (error: any) {
+      console.error('All email methods failed:', error);
+      
+      toast({
+        title: "Failed to send message",
+        description: "Please contact me directly at akshayanoop2014@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
