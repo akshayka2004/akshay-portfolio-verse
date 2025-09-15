@@ -4,6 +4,9 @@ import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '@/config/emailjs';
 
+// Initialize EmailJS once (v4 API)
+emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -40,9 +43,6 @@ const Contact = () => {
       
       // Method 1: Try EmailJS first
       try {
-        // Initialize EmailJS
-        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-        
         const result = await emailjs.send(
           EMAILJS_CONFIG.SERVICE_ID,
           EMAILJS_CONFIG.TEMPLATE_ID,
@@ -51,8 +51,8 @@ const Contact = () => {
             from_email: formData.email,
             message: formData.message,
             to_name: 'Akshay K A',
-          },
-          EMAILJS_CONFIG.PUBLIC_KEY
+            to_email: EMAILJS_CONFIG.TO_EMAIL,
+          }
         );
 
         console.log('EmailJS result:', result);
