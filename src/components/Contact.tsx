@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Send, MapPin, Phone } from 'lucide-react';
+import { Mail, Linkedin, Send, MapPin, Phone, Github, ArrowRight, MessageSquare, Rocket } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '@/config/emailjs';
+import { motion } from 'framer-motion';
 
 // Initialize EmailJS once (v4 API)
 emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
@@ -27,71 +28,43 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Check if EmailJS is properly configured
     if (EMAILJS_CONFIG.SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID') {
       toast({
-        title: "EmailJS not configured",
-        description: "Please set up EmailJS to enable contact form. Check EMAILJS_SETUP.md for instructions.",
+        title: "Configuration Needed",
+        description: "EmailJS is not configured. Redirecting to manual email...",
         variant: "destructive",
       });
+      
+      const subject = encodeURIComponent(`Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+      window.location.href = `mailto:akshayanoop2014@gmail.com?subject=${subject}&body=${body}`;
       setIsSubmitting(false);
       return;
     }
 
     try {
-      console.log('Attempting to send email...');
-      
-      // Method 1: Try EmailJS first
-      try {
-        const result = await emailjs.send(
-          EMAILJS_CONFIG.SERVICE_ID,
-          EMAILJS_CONFIG.TEMPLATE_ID,
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_name: 'Akshay K A',
-            to_email: EMAILJS_CONFIG.TO_EMAIL,
-          }
-        );
-
-        console.log('EmailJS result:', result);
-
-        if (result.status === 200) {
-          toast({
-            title: "Message sent successfully!",
-            description: "Thank you for your message. I'll get back to you soon.",
-          });
-          setFormData({ name: '', email: '', message: '' });
-          setIsSubmitting(false);
-          return;
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Akshay K A',
+          to_email: EMAILJS_CONFIG.TO_EMAIL,
         }
-      } catch (emailjsError) {
-        console.error('EmailJS failed:', emailjsError);
-        
-        // Method 2: Fallback to direct email link
-        const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-        const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
-        const mailtoLink = `mailto:akshayanoop2014@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Open email client
-        window.open(mailtoLink);
-        
-        toast({
-          title: "Email client opened",
-          description: "EmailJS failed, but your email client should open with a pre-filled message. Please send it manually.",
-        });
-        
-        setFormData({ name: '', email: '', message: '' });
-        setIsSubmitting(false);
-        return;
-      }
+      );
 
-    } catch (error: any) {
-      console.error('All email methods failed:', error);
-      
+      if (result.status === 200) {
+        toast({
+          title: "Message Transmitted",
+          description: "Your message has been successfully sent to my engineering team.",
+        });
+        setFormData({ name: '', email: '', message: '' });
+      }
+    } catch (error) {
       toast({
-        title: "Failed to send message",
+        title: "Transmission Failed",
         description: "Please contact me directly at akshayanoop2014@gmail.com",
         variant: "destructive",
       });
@@ -100,170 +73,148 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <Mail className="text-primary" size={24} />,
-      title: 'Email',
-      value: 'akshayanoop2014@gmail.com',
-      link: 'mailto:akshayanoop2014@gmail.com'
-    },
-    {
-      icon: <Linkedin className="text-primary" size={24} />,
-      title: 'LinkedIn',
-      value: 'Connect with me',
-      link: 'https://linkedin.com/in/akshay-k-a-254872253'
-    },
-    {
-      icon: <MapPin className="text-primary" size={24} />,
-      title: 'Location',
-      value: 'Kottayam, Kerala, India',
-      link: null
-    }
-  ];
-
   return (
-    <section id="contact" className="section-padding bg-section-bg">
+    <section id="contact" className="section-padding bg-background relative overflow-hidden">
+      <div className="absolute top-[20%] right-[10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-[10%] left-[10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[100px] -z-10" />
+
       <div className="container-portfolio">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Get In Touch</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or just want to connect? I'd love to hear from you.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white rounded-xl p-8 shadow-portfolio">
-            <h3 className="text-2xl font-semibold text-foreground mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-portfolio"
-                  placeholder="Enter your name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-portfolio"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-portfolio resize-none"
-                  placeholder="Tell me about your project or just say hello..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        <div className="grid lg:grid-cols-2 gap-20">
+          {/* Left Column: CTA & Info */}
+          <motion.div 
+            className="space-y-12"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-6">
+              <motion.div 
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
+                Contact
+              </motion.div>
+              <h2 className="text-4xl lg:text-6xl font-extrabold text-foreground leading-tight">
+                Ready to <span className="text-gradient">Scale</span> Your Vision?
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Whether you're looking to build a scalable backend, integrate intelligent AI, or need a technical consultation, I'm here to bridge the gap between idea and execution.
+              </p>
+            </div>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl p-8 shadow-portfolio">
-              <h3 className="text-2xl font-semibold text-foreground mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      {info.icon}
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <div className="p-3 bg-primary/10 rounded-xl w-fit text-primary mb-4">
+                  <Mail size={24} />
+                </div>
+                <h4 className="font-bold text-foreground">Direct Email</h4>
+                <a href="mailto:akshayanoop2014@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  akshayanoop2014@gmail.com
+                </a>
+              </div>
+              <div className="space-y-2">
+                <div className="p-3 bg-primary/10 rounded-xl w-fit text-primary mb-4">
+                  <MessageSquare size={24} />
+                </div>
+                <h4 className="font-bold text-foreground">Social Pulse</h4>
+                <div className="flex gap-4">
+                  <a href="https://linkedin.com/in/akshay-k-a-254872253" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    <Linkedin size={24} />
+                  </a>
+                  <a href="https://github.com/akshayka2004" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                    <Github size={24} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 glass rounded-3xl border border-border/50 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Rocket size={80} />
+              </div>
+              <h4 className="text-2xl font-bold text-foreground mb-2">Let's build the future.</h4>
+              <p className="text-muted-foreground">Open for collaborations and interesting technical challenges.</p>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Form */}
+          <motion.div 
+            className="premium-card !p-0 overflow-hidden"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="p-10 space-y-8">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-foreground">Send a Secure Message</h3>
+                <p className="text-muted-foreground">I'll respond within 24 business hours.</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        placeholder="John Doe"
+                      />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">{info.title}</h4>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-primary-dark transition-portfolio"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-text-light">{info.value}</p>
-                      )}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        placeholder="john@example.com"
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Message</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                      placeholder="Tell me about your vision..."
+                    />
+                  </div>
+                </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-portfolio">
-              <h3 className="text-xl font-semibold text-foreground mb-4">Let's Connect</h3>
-              <p className="text-text-light mb-6">
-                I'm always open to discussing new opportunities, collaborations, or just having a 
-                chat about technology and development. Feel free to reach out!
-              </p>
-              <div className="flex gap-4">
-                <a
-                  href="https://linkedin.com/in/akshay-k-a-254872253"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary flex items-center gap-2"
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full btn-primary"
                 >
-                  <Linkedin size={20} />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href="mailto:akshayanoop2014@gmail.com"
-                  className="btn-secondary flex items-center gap-2"
-                >
-                  <Mail size={20} />
-                  <span>Email</span>
-                </a>
-              </div>
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Transmitting...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <span>Launch Inquiry</span>
+                      <Send size={18} />
+                    </div>
+                  )}
+                </button>
+              </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Contact;
+export default Contact;

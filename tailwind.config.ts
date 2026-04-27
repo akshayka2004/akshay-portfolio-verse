@@ -70,14 +70,19 @@ export default {
 				'text-light': 'hsl(var(--text-light))',
 				'text-dark': 'hsl(var(--text-dark))'
 			},
+			boxShadow: {
+				'premium': '0 25px 50px -12px rgba(0, 0, 0, 0.08)',
+				'premium-hover': '0 35px 60px -15px rgba(0, 0, 0, 0.12)',
+			},
 			fontFamily: {
-				inter: ['Inter', 'sans-serif'],
-				sans: ['Inter', 'sans-serif']
+				sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				'3xl': '1.5rem',
+				'4xl': '2rem',
 			},
 			keyframes: {
 				'accordion-down': {
