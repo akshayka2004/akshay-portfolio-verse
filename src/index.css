@@ -24,7 +24,7 @@
   }
 
   body {
-    @apply bg-white text-foreground font-plus-jakarta antialiased selection:bg-primary/10 selection:text-primary;
+    @apply bg-white text-foreground font-sans antialiased selection:bg-primary/10 selection:text-primary;
     line-height: 1.6;
     letter-spacing: -0.015em;
   }

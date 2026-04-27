@@ -39,22 +39,22 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-      isScrolled ? 'py-4' : 'py-8'
+    <header className={`fixed top-0 w-full z-50 transition-all duration-1000 ease-[0.23,1,0.32,1] ${
+      isScrolled ? 'py-4' : 'py-10'
     }`}>
       <div className="container-portfolio">
-        <div className={`mx-auto transition-all duration-700 rounded-[2rem] ${
-          isScrolled ? 'glass px-8 py-3 shadow-xl max-w-5xl border-white/40' : 'bg-transparent px-0 py-0'
+        <div className={`mx-auto transition-all duration-1000 ease-[0.23,1,0.32,1] rounded-[2.5rem] ${
+          isScrolled ? 'bg-white/70 backdrop-blur-2xl px-10 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.05)] max-w-6xl border border-white/50' : 'bg-transparent px-0 py-0'
         }`}>
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-16">
             <div 
-              className="text-2xl font-black tracking-tighter cursor-pointer flex items-center gap-3 group"
+              className="text-2xl font-black tracking-tighter cursor-pointer flex items-center gap-4 group"
               onClick={() => scrollToSection('home')}
             >
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white group-hover:rotate-12 transition-all duration-500 shadow-lg shadow-primary/20">
-                <Rocket size={20} />
+              <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center text-white group-hover:rotate-[15deg] transition-all duration-1000 ease-[0.23,1,0.32,1] shadow-2xl">
+                <Rocket size={24} />
               </div>
-              <span className="text-gradient uppercase">Akshay.Dev</span>
+              <span className="text-gradient uppercase text-xl font-black tracking-tighter leading-none">Akshay.Dev</span>
             </div>
 
             {/* Desktop Navigation */}
@@ -63,25 +63,25 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-all duration-500 relative group"
+                  className="px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/60 hover:text-black transition-all duration-1000 ease-[0.23,1,0.32,1] relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-1/2" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-black transition-all duration-1000 ease-[0.23,1,0.32,1] group-hover:w-1/3" />
                 </button>
               ))}
-              <div className="pl-6">
+              <div className="pl-8">
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="px-6 py-2.5 bg-primary text-primary-foreground text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-primary/90 hover:-translate-y-1 transition-all duration-500 shadow-lg shadow-primary/10"
+                  className="px-10 py-3.5 bg-black text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-2xl hover:bg-primary hover:-translate-y-2 transition-all duration-1000 ease-[0.23,1,0.32,1] shadow-2xl shadow-black/10"
                 >
-                  Get Started
+                  Launch Build
                 </button>
               </div>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-xl glass hover:bg-secondary transition-portfolio"
+              className="md:hidden p-4 rounded-2xl bg-black/5 hover:bg-black/10 transition-all duration-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,27 +93,28 @@ const Header = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.nav 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="md:hidden mt-4 glass rounded-3xl overflow-hidden shadow-2xl border border-white/20"
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              className="md:hidden mt-6 bg-white/90 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.1)] border border-white/50"
             >
-              <div className="flex flex-col p-4">
+              <div className="flex flex-col p-6">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="text-left px-6 py-4 text-lg font-bold text-foreground hover:bg-primary/5 hover:text-primary rounded-2xl transition-all"
+                    className="text-left px-8 py-6 text-xl font-black text-foreground hover:bg-black hover:text-white rounded-2xl transition-all duration-700 uppercase tracking-tighter"
                   >
                     {item.label}
                   </button>
                 ))}
-                <div className="p-4 pt-8">
+                <div className="p-6 pt-10">
                   <button 
                     onClick={() => scrollToSection('contact')}
-                    className="w-full btn-primary"
+                    className="w-full py-8 bg-black text-white rounded-3xl font-black uppercase tracking-[0.4em] text-xs shadow-2xl"
                   >
-                    Get Started
+                    Launch Build
                   </button>
                 </div>
               </div>
