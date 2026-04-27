@@ -13,34 +13,34 @@ const About = () => {
   return (
     <section id="about" className="section-padding bg-background relative overflow-hidden">
       <div className="container-portfolio">
-        <div className="grid lg:grid-cols-2 gap-24 items-center mb-40">
+        <div className="grid lg:grid-cols-2 gap-32 items-center mb-48">
           {/* Bio Section */}
           <motion.div 
-            className="space-y-10"
-            initial={{ opacity: 0, x: -30 }}
+            className="space-y-12"
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="space-y-6">
-              <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">The Philosophy</span>
-              <h3 className="text-4xl lg:text-6xl font-black text-foreground leading-[1.1] uppercase tracking-tighter">Engineering with <br /> <span className="text-gradient">Purpose & Precision</span></h3>
-              <p className="text-xl text-muted-foreground leading-relaxed font-medium">
-                I'm a final-year MCA student at Saintgits College of Engineering, specializing in backend architecture and data-driven systems. My approach combines academic rigor with a hands-on obsession for building production-grade software.
+            <div className="space-y-8">
+              <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">The Philosophy</span>
+              <h3 className="text-[clamp(2.5rem,8vw,5.5rem)] font-black text-foreground leading-[0.85] uppercase tracking-tighter">Engineering with <br /> <span className="text-gradient">Purpose & Precision</span></h3>
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium tracking-tight">
+                I'm a final-year MCA student at Saintgits College of Engineering, specializing in backend architecture and high-throughput systems. My approach combines academic rigor with a hands-on obsession for building production-grade software.
               </p>
-              <p className="text-lg text-muted-foreground/80 leading-relaxed font-medium">
-                Beyond the code, I focus on the "why" — ensuring every system I build serves a clear business goal and provides an exceptional user experience.
+              <p className="text-xl text-muted-foreground/70 leading-relaxed font-medium tracking-tight">
+                Beyond the stack, I focus on systems that solve real business bottlenecks — ensuring every line of code serves a strategic outcome.
               </p>
             </div>
 
-            <div className="flex items-center gap-6 p-6 bg-white border border-border/40 rounded-3xl shadow-sm">
-              <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
-                <GraduationCap className="text-primary" size={28} />
+            <div className="flex items-center gap-8 p-8 bg-white border border-black/[0.03] rounded-[2.5rem] premium-shadow">
+              <div className="p-5 bg-primary/[0.04] rounded-2xl border border-primary/10">
+                <GraduationCap className="text-primary" size={32} />
               </div>
               <div>
-                <h4 className="text-lg font-black text-foreground uppercase tracking-tight">MCA (Integrated)</h4>
-                <p className="text-sm text-muted-foreground flex items-center gap-2 font-bold">
-                   <MapPin size={14} className="text-primary" /> Saintgits College of Engineering • Class of 2027
+                <h4 className="text-xl font-black text-foreground uppercase tracking-tight">MCA (Integrated)</h4>
+                <p className="text-sm text-muted-foreground flex items-center gap-3 font-black uppercase tracking-[0.1em]">
+                   <MapPin size={16} className="text-primary" /> Saintgits College • 2027
                 </p>
               </div>
             </div>
@@ -48,50 +48,50 @@ const About = () => {
 
           {/* Workflow Section */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            initial={{ opacity: 0, x: 30 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           >
             {workflow.map((item, idx) => (
-              <div key={item.title} className="card-premium group p-8">
-                <div className="p-4 bg-primary/5 rounded-2xl w-fit mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-700">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 24, className: "group-hover:text-white transition-colors duration-700" })}
+              <div key={item.title} className="card-premium group p-10 relative overflow-hidden">
+                <div className="p-5 bg-primary/[0.04] rounded-2xl w-fit mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-1000 ease-[0.23,1,0.32,1]">
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 28, className: "group-hover:text-white transition-colors duration-1000" })}
                 </div>
-                <h4 className="text-xl font-black text-foreground mb-3 uppercase tracking-tight">{item.title}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
+                <h4 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter leading-none">{item.title}</h4>
+                <p className="text-[15px] text-muted-foreground leading-relaxed font-medium tracking-tight">{item.desc}</p>
               </div>
             ))}
           </motion.div>
         </div>
 
         {/* Personal Edge Section */}
-        <div className="pt-28 border-t border-border/40">
-          <div className="text-center mb-20 space-y-4">
-            <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Beyond the Stack</span>
-            <h3 className="text-3xl md:text-5xl font-black text-foreground uppercase tracking-tighter">The Personal Edge</h3>
+        <div className="pt-40 border-t border-black/[0.04]">
+          <div className="text-center mb-24 space-y-6">
+            <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">The Personal Edge</span>
+            <h3 className="text-4xl md:text-7xl font-black text-foreground uppercase tracking-tighter leading-none">Beyond the Stack</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
-              { icon: <Heart size={32} />, color: 'bg-pink-500', title: 'Music & Debate', desc: 'Passionate about intellectual discussions and the rhythm of diverse soundscapes.' },
-              { icon: <Camera size={32} />, color: 'bg-blue-500', title: 'Photography', desc: 'Capturing moments and perspectives through a lens, finding beauty in the details.' },
-              { icon: <Plane size={32} />, color: 'bg-emerald-500', title: 'Exploration', desc: 'Traveler at heart, always seeking new cultures, terrains, and experiences.' }
+              { icon: <Heart size={36} />, color: 'bg-pink-500', title: 'Music & Debate', desc: 'Passionate about intellectual discussions and the rhythm of diverse soundscapes.' },
+              { icon: <Camera size={36} />, color: 'bg-blue-500', title: 'Photography', desc: 'Capturing moments and perspectives through a lens, finding beauty in the details.' },
+              { icon: <Plane size={36} />, color: 'bg-emerald-500', title: 'Exploration', desc: 'Traveler at heart, always seeking new cultures, terrains, and experiences.' }
             ].map((item, idx) => (
               <motion.div 
                 key={item.title}
-                className="flex flex-col items-center p-10 bg-white border border-border/40 rounded-[2.5rem] text-center group premium-shadow-hover"
-                initial={{ opacity: 0, y: 20 }}
+                className="card-premium flex flex-col items-center p-12 text-center group"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.1, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
               >
-                <div className={`w-20 h-20 rounded-[2rem] ${item.color}/10 flex items-center justify-center text-${item.color.split('-')[1]}-500 mb-8 group-hover:bg-${item.color.split('-')[1]}-500 group-hover:text-white transition-all duration-700`}>
+                <div className={`w-24 h-24 rounded-[2.5rem] ${item.color}/[0.05] flex items-center justify-center text-${item.color.split('-')[1]}-500 mb-10 group-hover:scale-110 transition-transform duration-1000 ease-[0.23,1,0.32,1]`}>
                   {item.icon}
                 </div>
-                <h4 className="text-xl font-black text-foreground mb-3 uppercase tracking-tight">{item.title}</h4>
-                <p className="text-muted-foreground font-medium leading-relaxed">{item.desc}</p>
+                <h4 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter leading-none">{item.title}</h4>
+                <p className="text-lg text-muted-foreground font-medium leading-relaxed tracking-tight">{item.desc}</p>
               </motion.div>
             ))}
           </div>

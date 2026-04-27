@@ -75,101 +75,102 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding bg-background relative">
       <div className="container-portfolio">
-        <div className="text-center mb-20">
+        <div className="text-center mb-32">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4"
+            className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-[0.4em] mb-8 shadow-2xl"
           >
-            Portfolio
+            Selected Works
           </motion.div>
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-6xl font-extrabold text-foreground mb-6"
+            transition={{ delay: 0.2, duration: 1, ease: [0.23, 1, 0.32, 1] }}
+            className="text-[clamp(2.5rem,8vw,5.5rem)] font-black text-foreground mb-8 uppercase leading-[0.85] tracking-tighter"
           >
-            Featured <span className="text-gradient">Case Studies</span>
+            Case <span className="text-gradient">Studies</span>
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            transition={{ delay: 0.3, duration: 1, ease: [0.23, 1, 0.32, 1] }}
+            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto tracking-tight"
           >
-            A selection of production-grade systems and research-driven applications built with precision.
+            A selection of production-grade systems and research-driven applications built with architectural precision.
           </motion.p>
         </div>
 
-        <div className="space-y-40">
+        <div className="space-y-48">
           {projects.map((project, index) => (
             <motion.div 
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
-              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 lg:gap-24 items-center`}
+              transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: index * 0.1 }}
+              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-20 lg:gap-32 items-center`}
             >
               {/* Image Side - Refined with depth */}
-              <div className="w-full lg:w-1/2 group relative">
-                <div className="absolute -inset-6 bg-gradient-to-tr from-primary/10 to-accent/10 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/40 premium-shadow group-hover:shadow-2xl transition-all duration-700">
+              <div className="w-full lg:w-[55%] group relative">
+                <div className="absolute -inset-10 bg-primary/[0.03] rounded-[4rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ease-out" />
+                <div className="relative overflow-hidden rounded-[3rem] border border-black/[0.04] premium-shadow group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-1000 ease-out">
                   <motion.img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-1000"
+                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out"
                   />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 </div>
               </div>
 
               {/* Content Side - Hierarchy & Impact */}
-              <div className="w-full lg:w-1/2 space-y-10">
-                <div className="space-y-6">
+              <div className="w-full lg:w-[45%] space-y-12">
+                <div className="space-y-8">
                   <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em] bg-primary/[0.04] px-5 py-2 rounded-full border border-primary/10">
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-4xl lg:text-6xl font-black text-foreground leading-[1.1] uppercase">
+                  <h3 className="text-4xl lg:text-7xl font-black text-foreground leading-[0.85] uppercase tracking-tighter">
                     {project.title}
                   </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+                  <p className="text-xl text-muted-foreground leading-relaxed max-w-xl tracking-tight">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Impact Highlight */}
-                <div className="p-8 bg-secondary/30 rounded-3xl border border-border/40 space-y-4">
-                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] flex items-center gap-2">
-                    <div className="w-6 h-[1px] bg-primary" /> Key Outcome
+                {/* Impact Highlight - Premium Treatment */}
+                <div className="p-10 bg-slate-50/50 rounded-[2.5rem] border border-black/[0.03] space-y-6 relative overflow-hidden group/impact">
+                  <div className="absolute top-0 right-0 p-8 opacity-10">
+                    <Zap size={40} className="text-primary" />
+                  </div>
+                  <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em] flex items-center gap-4">
+                    <div className="w-8 h-[1px] bg-primary/30" /> Business Impact
                   </span>
-                  <p className="text-xl md:text-2xl font-black text-foreground leading-tight">
+                  <p className="text-2xl md:text-3xl font-black text-foreground leading-none uppercase tracking-tighter">
                     {project.impact}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-3 pt-2">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-4 py-1.5 bg-white text-muted-foreground text-[10px] font-black uppercase tracking-widest rounded-full border border-border/60">
+                    <span key={tag} className="px-5 py-2 bg-white text-muted-foreground text-[10px] font-black uppercase tracking-[0.2em] rounded-full border border-black/[0.06] shadow-sm">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-6">
                   <a 
                     href={project.link}
-                    className="inline-flex items-center gap-3 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-500 group"
+                    className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary hover:-translate-y-2 transition-all duration-700 ease-[0.23,1,0.32,1] shadow-2xl shadow-black/5 group"
                   >
                     Deep Dive Case Study
-                    <div className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                      <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <ArrowRight size={18} className="transform group-hover:translate-x-2 transition-transform duration-700 ease-out" />
                   </a>
                 </div>
               </div>
