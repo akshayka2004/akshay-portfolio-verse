@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import marketsyncImg from '../assets/marketsync.png';
