@@ -104,78 +104,72 @@ const Projects = () => {
           </motion.p>
         </div>
 
-        <div className="space-y-32">
+        <div className="space-y-40">
           {projects.map((project, index) => (
             <motion.div 
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 lg:gap-24 items-center`}
             >
-              {/* Image Side */}
-              <div className="w-full lg:w-3/5 group cursor-pointer relative">
-                <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative overflow-hidden rounded-[2rem] border border-border/50 shadow-2xl">
+              {/* Image Side - Refined with depth */}
+              <div className="w-full lg:w-1/2 group relative">
+                <div className="absolute -inset-6 bg-gradient-to-tr from-primary/10 to-accent/10 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/40 premium-shadow group-hover:shadow-2xl transition-all duration-700">
                   <motion.img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-1000"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                    <div className="flex gap-4">
-                      <a href={project.github} className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-primary transition-colors">
-                        <Github size={20} />
-                      </a>
-                      <a href={project.link} className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-primary transition-colors">
-                        <ExternalLink size={20} />
-                      </a>
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
 
-              {/* Content Side */}
-              <div className="w-full lg:w-2/5 space-y-8">
-                <div className="space-y-4">
-                  <span className="text-sm font-bold text-primary uppercase tracking-[0.2em]">{project.category}</span>
-                  <h3 className="text-3xl lg:text-5xl font-black text-foreground tracking-tight">{project.title}</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+              {/* Content Side - Hierarchy & Impact */}
+              <div className="w-full lg:w-1/2 space-y-10">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 className="text-4xl lg:text-6xl font-black text-foreground leading-[1.1] uppercase">
+                    {project.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="space-y-6 pt-4 border-t border-border/50">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-                      <div className="w-4 h-[1px] bg-muted-foreground" /> The Problem
-                    </span>
-                    <p className="text-sm text-foreground font-medium leading-relaxed">{project.problem}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-                      <div className="w-4 h-[1px] bg-muted-foreground" /> The Impact
-                    </span>
-                    <p className="text-sm text-primary font-bold leading-relaxed">{project.impact}</p>
-                  </div>
+                {/* Impact Highlight */}
+                <div className="p-8 bg-secondary/30 rounded-3xl border border-border/40 space-y-4">
+                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] flex items-center gap-2">
+                    <div className="w-6 h-[1px] bg-primary" /> Key Outcome
+                  </span>
+                  <p className="text-xl md:text-2xl font-black text-foreground leading-tight">
+                    {project.impact}
+                  </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-4">
+                <div className="flex flex-wrap gap-2 pt-2">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-secondary/50 text-secondary-foreground text-xs font-bold rounded-full border border-border/50">
+                    <span key={tag} className="px-4 py-1.5 bg-white text-muted-foreground text-[10px] font-black uppercase tracking-widest rounded-full border border-border/60">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-6">
+                <div className="pt-4">
                   <a 
                     href={project.link}
-                    className="inline-flex items-center gap-2 text-foreground font-bold hover:text-primary transition-colors group"
+                    className="inline-flex items-center gap-3 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-500 group"
                   >
-                    View Project Case Study
-                    <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+                    Deep Dive Case Study
+                    <div className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                      <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </a>
                 </div>
               </div>

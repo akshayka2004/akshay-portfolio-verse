@@ -4,86 +4,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium portfolio design system */
+/* 
+  PREMIUM PRODUCT DESIGN SYSTEM 
+  Focus: Spacing, Depth, Typography Hierarchy
+*/
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 224 71% 4%;
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 20% 98%;
-    --primary-light: 221 83% 70%;
-    --primary-dark: 221 83% 30%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 210 20% 90%;
-    --secondary-foreground: 224 71% 4%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --muted: 210 20% 90%;
-    --muted-foreground: 215 16% 47%;
+    --accent: 262.2 83.3% 57.8%;
+    --accent-foreground: 210 40% 98%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 20% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221 83% 53%;
-
-    --radius: 1rem;
-
-    --hero-bg: 210 20% 98%;
-    --section-bg: 0 0% 100%;
-    --text-light: 215 16% 45%;
-    --text-dark: 224 71% 4%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%));
-    --gradient-subtle: linear-gradient(135deg, hsl(210 20% 98%), hsl(220 13% 95%));
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 98%));
-
-    --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 12px 24px -4px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
-    --shadow-premium: 0 20px 40px -15px rgba(37, 99, 235, 0.15);
-
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-
-    --card: 224 71% 6%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 224 71% 4%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 20% 98%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 20% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 221 83% 53%;
-
-    --gradient-card: linear-gradient(135deg, hsl(224 71% 6%), hsl(224 71% 10%));
+    --radius: 1.5rem;
   }
 
   * {
@@ -92,95 +42,78 @@
 
   body {
     @apply bg-background text-foreground font-plus-jakarta antialiased;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-extrabold tracking-tight text-foreground uppercase;
   }
 }
 
 @layer utilities {
-  .transition-portfolio {
-    @apply transition-all duration-300 ease-in-out;
+  .section-padding {
+    @apply py-28 md:py-40 px-6 md:px-12;
   }
 
-  .font-plus-jakarta {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  .container-portfolio {
+    @apply max-w-[1300px] mx-auto;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary;
+    background-size: 200% auto;
+    animation: text-shine 8s ease infinite;
+  }
+
+  @keyframes text-shine {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.04)];
+  }
+
+  .premium-shadow {
+    @apply shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)];
+  }
+
+  .premium-shadow-hover {
+    @apply hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500;
+  }
+
+  .glow-accent {
+    @apply relative after:absolute after:inset-0 after:bg-primary/10 after:blur-[80px] after:-z-10;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
-  }
-
-  .glass-dark {
-    @apply bg-black/40 backdrop-blur-md border border-white/10;
-  }
-
-  .hero-gradient {
-    background: radial-gradient(circle at 50% 50%, hsl(221 83% 96%), hsl(210 20% 98%));
-  }
-
-  .primary-gradient {
-    background: var(--gradient-primary);
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary-light;
-    background-size: 200% auto;
-    animation: text-shine 5s linear infinite;
-  }
-
-  @keyframes text-shine {
-    to { background-position: 200% center; }
-  }
-
-  .section-padding {
-    @apply py-24 px-6 md:px-12 lg:px-24;
-  }
-
-  .container-portfolio {
-    @apply max-w-7xl mx-auto;
-  }
-
-  .premium-card {
-    @apply bg-card rounded-2xl p-8 border border-border/50 shadow-sm hover:shadow-premium transition-portfolio hover:-translate-y-1 relative overflow-hidden;
-  }
-
-  .premium-card::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500;
-  }
-
-  .premium-card:hover::before {
-    @apply opacity-100;
-  }
-
   .btn-primary {
-    @apply relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold transition-portfolio shadow-premium hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-2;
+    @apply inline-flex items-center gap-3 bg-primary text-primary-foreground px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary/90 hover:-translate-y-1 transition-all duration-500 shadow-xl shadow-primary/10;
   }
 
   .btn-secondary {
-    @apply glass text-foreground px-8 py-4 rounded-xl font-semibold transition-portfolio border border-border/50 hover:bg-secondary/50 hover:scale-105 active:scale-95 flex items-center justify-center gap-2;
+    @apply inline-flex items-center gap-3 bg-white text-foreground px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-secondary/50 hover:-translate-y-1 transition-all duration-500 border border-border/60;
   }
 
-  .nav-link {
-    @apply text-muted-foreground hover:text-primary transition-portfolio relative font-medium;
-  }
-
-  .nav-link.active {
-    @apply text-primary font-bold;
-  }
-
-  .nav-link::after {
-    content: '';
-    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
-  }
-
-  .nav-link:hover::after {
-    @apply w-full;
+  .card-premium {
+    @apply bg-white border border-border/40 rounded-[2.5rem] p-10 premium-shadow premium-shadow-hover;
   }
 }
 
-/* Custom Utilities */
-.font-plus-jakarta {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+.hero-gradient {
+  background: radial-gradient(circle at 50% 0%, hsl(221 83% 96%), transparent 70%),
+              radial-gradient(circle at 100% 100%, hsl(262 83% 96%), transparent 70%);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}

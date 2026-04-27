@@ -11,99 +11,89 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding bg-section-bg relative overflow-hidden">
+    <section id="about" className="section-padding bg-background relative overflow-hidden">
       <div className="container-portfolio">
-        <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
+        <div className="grid lg:grid-cols-2 gap-24 items-center mb-40">
           {/* Bio Section */}
           <motion.div 
-            className="space-y-8"
+            className="space-y-10"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="space-y-4">
-              <h2 className="text-sm font-bold text-primary uppercase tracking-widest">The Journey</h2>
-              <h3 className="text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">Engineering with Purpose & Precision</h3>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+            <div className="space-y-6">
+              <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">The Philosophy</span>
+              <h3 className="text-4xl lg:text-6xl font-black text-foreground leading-[1.1] uppercase tracking-tighter">Engineering with <br /> <span className="text-gradient">Purpose & Precision</span></h3>
+              <p className="text-xl text-muted-foreground leading-relaxed font-medium">
                 I'm a final-year MCA student at Saintgits College of Engineering, specializing in backend architecture and data-driven systems. My approach combines academic rigor with a hands-on obsession for building production-grade software.
               </p>
-              <p className="text-lg text-text-light leading-relaxed">
+              <p className="text-lg text-muted-foreground/80 leading-relaxed font-medium">
                 Beyond the code, I focus on the "why" — ensuring every system I build serves a clear business goal and provides an exceptional user experience.
               </p>
             </div>
 
-            <div className="flex items-center gap-4 p-4 glass rounded-2xl border border-border">
-              <div className="p-3 bg-primary/10 rounded-xl">
-                <GraduationCap className="text-primary" size={24} />
+            <div className="flex items-center gap-6 p-6 bg-white border border-border/40 rounded-3xl shadow-sm">
+              <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
+                <GraduationCap className="text-primary" size={28} />
               </div>
               <div>
-                <h4 className="font-bold text-foreground">MCA (Integrated)</h4>
-                <p className="text-sm text-muted-foreground flex items-center gap-2">
-                   <MapPin size={14} /> Saintgits College of Engineering • Class of 2027
+                <h4 className="text-lg font-black text-foreground uppercase tracking-tight">MCA (Integrated)</h4>
+                <p className="text-sm text-muted-foreground flex items-center gap-2 font-bold">
+                   <MapPin size={14} className="text-primary" /> Saintgits College of Engineering • Class of 2027
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* How I Work Section */}
+          {/* Workflow Section */}
           <motion.div 
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             {workflow.map((item, idx) => (
-              <div key={item.title} className="premium-card group">
-                <div className="p-3 bg-primary/5 rounded-xl w-fit mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  {item.icon}
+              <div key={item.title} className="card-premium group p-8">
+                <div className="p-4 bg-primary/5 rounded-2xl w-fit mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-700">
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 24, className: "group-hover:text-white transition-colors duration-700" })}
                 </div>
-                <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <h4 className="text-xl font-black text-foreground mb-3 uppercase tracking-tight">{item.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
               </div>
             ))}
           </motion.div>
         </div>
 
         {/* Personal Edge Section */}
-        <div className="pt-20 border-t border-border/50">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-foreground">Personal Edge</h3>
-            <p className="text-muted-foreground mt-2">What keeps me inspired outside the IDE</p>
+        <div className="pt-28 border-t border-border/40">
+          <div className="text-center mb-20 space-y-4">
+            <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Beyond the Stack</span>
+            <h3 className="text-3xl md:text-5xl font-black text-foreground uppercase tracking-tighter">The Personal Edge</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              className="flex flex-col items-center p-8 glass rounded-3xl text-center group"
-              whileHover={{ y: -10 }}
-            >
-              <div className="w-16 h-16 rounded-full bg-pink-500/10 flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300">
-                <Heart size={32} />
-              </div>
-              <h4 className="text-xl font-bold mb-2">Music & Debate</h4>
-              <p className="text-muted-foreground">Passionate about intellectual discussions and the rhythm of diverse soundscapes.</p>
-            </motion.div>
-
-            <motion.div 
-              className="flex flex-col items-center p-8 glass rounded-3xl text-center group"
-              whileHover={{ y: -10 }}
-            >
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
-                <Camera size={32} />
-              </div>
-              <h4 className="text-xl font-bold mb-2">Photography</h4>
-              <p className="text-muted-foreground">Capturing moments and perspectives through a lens, finding beauty in the details.</p>
-            </motion.div>
-
-            <motion.div 
-              className="flex flex-col items-center p-8 glass rounded-3xl text-center group"
-              whileHover={{ y: -10 }}
-            >
-              <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                <Plane size={32} />
-              </div>
-              <h4 className="text-xl font-bold mb-2">Exploration</h4>
-              <p className="text-muted-foreground">Traveler at heart, always seeking new cultures, terrains, and experiences.</p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              { icon: <Heart size={32} />, color: 'bg-pink-500', title: 'Music & Debate', desc: 'Passionate about intellectual discussions and the rhythm of diverse soundscapes.' },
+              { icon: <Camera size={32} />, color: 'bg-blue-500', title: 'Photography', desc: 'Capturing moments and perspectives through a lens, finding beauty in the details.' },
+              { icon: <Plane size={32} />, color: 'bg-emerald-500', title: 'Exploration', desc: 'Traveler at heart, always seeking new cultures, terrains, and experiences.' }
+            ].map((item, idx) => (
+              <motion.div 
+                key={item.title}
+                className="flex flex-col items-center p-10 bg-white border border-border/40 rounded-[2.5rem] text-center group premium-shadow-hover"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <div className={`w-20 h-20 rounded-[2rem] ${item.color}/10 flex items-center justify-center text-${item.color.split('-')[1]}-500 mb-8 group-hover:bg-${item.color.split('-')[1]}-500 group-hover:text-white transition-all duration-700`}>
+                  {item.icon}
+                </div>
+                <h4 className="text-xl font-black text-foreground mb-3 uppercase tracking-tight">{item.title}</h4>
+                <p className="text-muted-foreground font-medium leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

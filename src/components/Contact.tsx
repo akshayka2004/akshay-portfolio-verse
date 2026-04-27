@@ -79,113 +79,115 @@ const Contact = () => {
       <div className="absolute bottom-[10%] left-[10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[100px] -z-10" />
 
       <div className="container-portfolio">
-        <div className="grid lg:grid-cols-2 gap-20">
+        <div className="grid lg:grid-cols-2 gap-24">
           {/* Left Column: CTA & Info */}
           <motion.div 
-            className="space-y-12"
+            className="space-y-16"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="space-y-6">
+            <div className="space-y-8">
               <motion.div 
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest"
+                className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white border border-border/50 text-primary text-[10px] font-black uppercase tracking-[0.3em] shadow-sm"
               >
-                Contact
+                Let's Collaborate
               </motion.div>
-              <h2 className="text-4xl lg:text-6xl font-extrabold text-foreground leading-tight">
-                Ready to <span className="text-gradient">Scale</span> Your Vision?
+              <h2 className="text-4xl lg:text-7xl font-black text-foreground leading-[0.9] uppercase tracking-tighter">
+                Ready to <span className="text-gradient glow-accent">Scale</span> <br /> Your Vision?
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium max-w-xl">
                 Whether you're looking to build a scalable backend, integrate intelligent AI, or need a technical consultation, I'm here to bridge the gap between idea and execution.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <div className="p-3 bg-primary/10 rounded-xl w-fit text-primary mb-4">
-                  <Mail size={24} />
+            <div className="grid sm:grid-cols-2 gap-10">
+              <div className="space-y-4">
+                <div className="p-4 bg-primary/5 rounded-2xl w-fit text-primary border border-primary/10">
+                  <Mail size={28} />
                 </div>
-                <h4 className="font-bold text-foreground">Direct Email</h4>
-                <a href="mailto:akshayanoop2014@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                <h4 className="text-lg font-black text-foreground uppercase tracking-tight">Direct Email</h4>
+                <a href="mailto:akshayanoop2014@gmail.com" className="text-muted-foreground hover:text-primary transition-all duration-500 font-bold block">
                   akshayanoop2014@gmail.com
                 </a>
               </div>
-              <div className="space-y-2">
-                <div className="p-3 bg-primary/10 rounded-xl w-fit text-primary mb-4">
-                  <MessageSquare size={24} />
+              <div className="space-y-4">
+                <div className="p-4 bg-primary/5 rounded-2xl w-fit text-primary border border-primary/10">
+                  <MessageSquare size={28} />
                 </div>
-                <h4 className="font-bold text-foreground">Social Pulse</h4>
-                <div className="flex gap-4">
-                  <a href="https://linkedin.com/in/akshay-k-a-254872253" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    <Linkedin size={24} />
+                <h4 className="text-lg font-black text-foreground uppercase tracking-tight">Social Pulse</h4>
+                <div className="flex gap-6">
+                  <a href="https://linkedin.com/in/akshay-k-a-254872253" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-500 hover:-translate-y-1">
+                    <Linkedin size={28} />
                   </a>
-                  <a href="https://github.com/akshayka2004" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    <Github size={24} />
+                  <a href="https://github.com/akshayka2004" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-all duration-500 hover:-translate-y-1">
+                    <Github size={28} />
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="p-8 glass rounded-3xl border border-border/50 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Rocket size={80} />
+            <div className="p-10 bg-white border border-border/40 rounded-[2.5rem] relative overflow-hidden group premium-shadow">
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700">
+                <Rocket size={120} />
               </div>
-              <h4 className="text-2xl font-bold text-foreground mb-2">Let's build the future.</h4>
-              <p className="text-muted-foreground">Open for collaborations and interesting technical challenges.</p>
+              <h4 className="text-3xl font-black text-foreground mb-3 uppercase tracking-tight">Let's build the future.</h4>
+              <p className="text-lg text-muted-foreground font-medium">Open for collaborations and interesting technical challenges.</p>
             </div>
           </motion.div>
 
           {/* Right Column: Form */}
           <motion.div 
-            className="premium-card !p-0 overflow-hidden"
+            className="card-premium !p-0 overflow-hidden"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="p-10 space-y-8">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-foreground">Send a Secure Message</h3>
-                <p className="text-muted-foreground">I'll respond within 24 business hours.</p>
+            <div className="p-12 space-y-10">
+              <div className="space-y-3">
+                <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase tracking-tight">Initialize Inquiry</h3>
+                <p className="text-muted-foreground font-medium">I'll respond within 24 business hours.</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Name</label>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] ml-1">Identity</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full bg-secondary/20 border border-border/40 rounded-2xl px-6 py-5 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all duration-500 font-bold text-foreground placeholder:text-muted-foreground/50"
                         placeholder="John Doe"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Email</label>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] ml-1">Communication</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full bg-secondary/20 border border-border/40 rounded-2xl px-6 py-5 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all duration-500 font-bold text-foreground placeholder:text-muted-foreground/50"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Message</label>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] ml-1">Brief Description</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full bg-secondary/30 border border-border/50 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                      className="w-full bg-secondary/20 border border-border/40 rounded-2xl px-6 py-5 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all duration-500 font-bold text-foreground placeholder:text-muted-foreground/50 resize-none"
                       placeholder="Tell me about your vision..."
                     />
                   </div>
@@ -194,17 +196,17 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary"
+                  className="w-full btn-primary group"
                 >
                   {isSubmitting ? (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      <span>Transmitting...</span>
+                      <span>Transmitting Vector...</span>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <span>Launch Inquiry</span>
-                      <Send size={18} />
+                      <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />
                     </div>
                   )}
                 </button>

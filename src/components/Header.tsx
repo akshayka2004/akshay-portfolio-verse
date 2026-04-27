@@ -39,42 +39,42 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'py-4' : 'py-6'
+    <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${
+      isScrolled ? 'py-4' : 'py-8'
     }`}>
       <div className="container-portfolio">
-        <div className={`mx-auto transition-all duration-500 rounded-2xl ${
-          isScrolled ? 'glass px-6 py-2 shadow-lg max-w-4xl' : 'bg-transparent px-0 py-0'
+        <div className={`mx-auto transition-all duration-700 rounded-[2rem] ${
+          isScrolled ? 'glass px-8 py-3 shadow-xl max-w-5xl border-white/40' : 'bg-transparent px-0 py-0'
         }`}>
           <div className="flex items-center justify-between h-14">
             <div 
-              className="text-xl font-black tracking-tighter cursor-pointer flex items-center gap-2 group"
+              className="text-2xl font-black tracking-tighter cursor-pointer flex items-center gap-3 group"
               onClick={() => scrollToSection('home')}
             >
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
-                <Rocket size={18} />
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white group-hover:rotate-12 transition-all duration-500 shadow-lg shadow-primary/20">
+                <Rocket size={20} />
               </div>
-              <span className="text-gradient">AKSHAY.DEV</span>
+              <span className="text-gradient uppercase">Akshay.Dev</span>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
+            <nav className="hidden md:flex items-center space-x-2">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-4 py-2 text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors relative group"
+                  className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-all duration-500 relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all group-hover:w-1/2" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-1/2" />
                 </button>
               ))}
-              <div className="pl-4">
+              <div className="pl-6">
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="btn-primary !px-5 !py-2 !text-xs !rounded-full"
+                  className="px-6 py-2.5 bg-primary text-primary-foreground text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-primary/90 hover:-translate-y-1 transition-all duration-500 shadow-lg shadow-primary/10"
                 >
-                  Hire Me
+                  Get Started
                 </button>
               </div>
             </nav>
