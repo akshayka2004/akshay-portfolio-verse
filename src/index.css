@@ -40,7 +40,7 @@
 
 @layer utilities {
   .container-portfolio {
-    @apply max-w-[1240px] mx-auto px-8;
+    @apply max-w-[1240px] mx-auto px-6 md:px-8;
   }
 
   .section-padding {
