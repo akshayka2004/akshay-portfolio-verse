@@ -74,7 +74,7 @@
   }
 
   .premium-shadow-hover {
-    @apply hover:shadow-[0_40px_70px_-15px_rgba(0,0,0,0.08)] transition-all duration-700 ease-[0.23,1,0.32,1];
+    @apply hover:shadow-[0_40px_70px_-15px_rgba(0,0,0,0.08)] transition-all duration-700 ease-quintic;
   }
 
   .noise-overlay {
@@ -96,11 +96,11 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-4 bg-black text-white px-12 py-6 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary hover:-translate-y-2 transition-all duration-700 ease-[0.23,1,0.32,1] shadow-2xl shadow-black/5;
+    @apply inline-flex items-center gap-4 bg-black text-white px-12 py-6 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary hover:-translate-y-2 transition-all duration-700 ease-quintic shadow-2xl shadow-black/5;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-4 bg-white text-foreground border border-black/[0.08] px-12 py-6 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-slate-50 hover:-translate-y-2 transition-all duration-700 ease-[0.23,1,0.32,1] shadow-sm;
+    @apply inline-flex items-center gap-4 bg-white text-foreground border border-black/[0.08] px-12 py-6 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-slate-50 hover:-translate-y-2 transition-all duration-700 ease-quintic shadow-sm;
   }
 
   .card-premium {
