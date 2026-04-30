@@ -43,6 +43,11 @@ const Contact = () => {
     }
 
     try {
+      console.log('Attempting to send email via EmailJS...', {
+        serviceId: EMAILJS_CONFIG.SERVICE_ID,
+        templateId: EMAILJS_CONFIG.TEMPLATE_ID,
+      });
+
       const result = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
@@ -52,8 +57,11 @@ const Contact = () => {
           message: formData.message,
           to_name: 'Akshay K A',
           to_email: EMAILJS_CONFIG.TO_EMAIL,
-        }
+        },
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
+
+      console.log('EmailJS response:', result);
 
       if (result.status === 200) {
         toast({
@@ -62,10 +70,11 @@ const Contact = () => {
         });
         setFormData({ name: '', email: '', message: '' });
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('EmailJS Error:', error);
       toast({
         title: "Transmission Failed",
-        description: `Please contact me directly at ${EMAILJS_CONFIG.TO_EMAIL}`,
+        description: error?.text || `Please contact me directly at ${EMAILJS_CONFIG.TO_EMAIL}`,
         variant: "destructive",
       });
     } finally {
