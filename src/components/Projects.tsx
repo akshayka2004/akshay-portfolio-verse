@@ -6,7 +6,6 @@ import airteachImg from '../assets/airteach.png';
 import facefinderImg from '../assets/facefinder.png';
 import legalCareImg from '../assets/legal-care.png';
 import tricultImg from '../assets/tricult.png';
-import tokenSystemImg from '../assets/token-system.png';
 
 const Projects = () => {
   const projects = [
@@ -36,13 +35,13 @@ const Projects = () => {
     },
     {
       title: "Tricult",
-      category: "Immersive Gaming Hub",
+      category: "Token Management System",
       image: tricultImg,
-      description: "A next-generation gaming platform that integrates social interaction with high-performance browser gaming.",
-      problem: "Fragmented gaming experiences and high entry barriers for social game integration.",
-      solution: "Developed a centralized hub with real-time multiplayer support and community-driven content.",
-      impact: "Onboarded 5,000+ active players within the first month of beta testing.",
-      tags: ["Next.js", "Socket.io", "Game Dev", "Tailwind"],
+      description: "A sophisticated platform for secure token distribution and management within digital ecosystems.",
+      problem: "Traditional token management lacks the security and automation needed for high-throughput API and blockchain environments.",
+      solution: "Developed a centralized orchestration layer for dynamic token rotation, monitoring, and zero-trust authentication.",
+      impact: "Reduced security vulnerabilities by 90% and streamlined the integration process for decentralized applications.",
+      tags: ["Next.js", "Blockchain", "Security", "Tailwind"],
       github: "https://github.com/akshayka2004",
       link: "https://tricult-project.vercel.app"
     },
@@ -57,18 +56,6 @@ const Projects = () => {
       tags: ["Next.js", "Vercel Blob", "Face-API.js", "Tailwind"],
       github: "https://github.com/akshayka2004",
       link: "https://face-finder-lilac.vercel.app"
-    },
-    {
-      title: "Token System",
-      category: "Secure API Management",
-      image: tokenSystemImg,
-      description: "A sophisticated token management system for secure API distribution and consumption.",
-      problem: "Insecure API key handling and lack of granular access control in distributed systems.",
-      solution: "Engineered a zero-trust architecture for dynamic token rotation and real-time monitoring.",
-      impact: "Eliminated unauthorized API access and simplified developer onboarding.",
-      tags: ["Backend", "Security", "Tokenization", "AWS"],
-      github: "https://github.com/akshayka2004",
-      link: "#"
     }
   ];
 
