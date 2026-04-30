@@ -111,8 +111,8 @@ const Hero = () => {
             className="flex items-center gap-10 pt-20 text-muted-foreground"
           >
             <div className="flex gap-8">
-              <a href="#" className="hover:text-primary transition-all duration-700 hover:-translate-y-2"><Github size={24} /></a>
-              <a href="#" className="hover:text-primary transition-all duration-700 hover:-translate-y-2"><Linkedin size={24} /></a>
+              <a href="https://github.com/akshayka2004" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-all duration-700 hover:-translate-y-2"><Github size={24} /></a>
+              <a href="https://linkedin.com/in/akshay-k-a-254872253" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-all duration-700 hover:-translate-y-2"><Linkedin size={24} /></a>
             </div>
             <div className="h-10 w-[1px] bg-black/[0.08]" />
             <div className="flex flex-col items-start text-left">

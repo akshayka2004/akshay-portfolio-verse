@@ -37,7 +37,7 @@ const Contact = () => {
       
       const subject = encodeURIComponent(`Inquiry from ${formData.name}`);
       const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
-      window.location.href = `mailto:akshayanoop2014@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${EMAILJS_CONFIG.TO_EMAIL}?subject=${subject}&body=${body}`;
       setIsSubmitting(false);
       return;
     }
@@ -65,7 +65,7 @@ const Contact = () => {
     } catch (error) {
       toast({
         title: "Transmission Failed",
-        description: "Please contact me directly at akshayanoop2014@gmail.com",
+        description: `Please contact me directly at ${EMAILJS_CONFIG.TO_EMAIL}`,
         variant: "destructive",
       });
     } finally {

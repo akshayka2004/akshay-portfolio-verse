@@ -2,26 +2,14 @@ import React from 'react';
 import { ExternalLink, Github, ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import marketsyncImg from '../assets/marketsync.png';
-import diseaseImg from '../assets/disease-prediction.png';
 import airteachImg from '../assets/airteach.png';
 import facefinderImg from '../assets/facefinder.png';
-import aiAssistantImg from '../assets/ai-assistant.png';
+import legalCareImg from '../assets/legal-care.png';
+import tricultImg from '../assets/tricult.png';
+import tokenSystemImg from '../assets/token-system.png';
 
 const Projects = () => {
   const projects = [
-    {
-      title: "MarketSync",
-      category: "Hypermarket Management System",
-      image: marketsyncImg,
-      description: "A comprehensive backend ecosystem designed to streamline hypermarket operations, from inventory tracking to real-time transaction processing.",
-      problem: "Manual inventory tracking and disjointed transaction systems led to data inconsistency and operational delays.",
-      solution: "Engineered a centralized multi-module architecture with automated stock reconciliation and real-time sales reporting.",
-      impact: "Reduced inventory processing time by 40% and improved data accuracy to 99.9% across multiple branches.",
-      tags: ["React", "Node.js", "PostgreSQL", "Tailwind"],
-      github: "https://github.com/akshayka2004",
-      link: "#"
-    },
     {
       title: "AirTeach",
       category: "AI Gesture Design Tool",
@@ -32,7 +20,31 @@ const Projects = () => {
       impact: "Achieved sub-50ms latency for real-time interaction, significantly lowering the barrier for accessible design tools.",
       tags: ["Python", "OpenCV", "MediaPipe", "React"],
       github: "https://github.com/akshayka2004",
-      link: "#"
+      link: "https://air-writing-app-wine.vercel.app"
+    },
+    {
+      title: "Legal Care",
+      category: "AI Legal Assistant",
+      image: legalCareImg,
+      description: "A platform designed to simplify legal documentation and advice through AI-driven insights.",
+      problem: "Legal processes are often complex, expensive, and time-consuming for the average person.",
+      solution: "Created an automated document analyzer and legal research assistant to provide instant, reliable guidance.",
+      impact: "Reduced document review time by 70% and increased legal accessibility for non-lawyers.",
+      tags: ["React", "Tailwind", "AI", "Node.js"],
+      github: "https://github.com/akshayka2004",
+      link: "https://legal-care-kappa.vercel.app/home"
+    },
+    {
+      title: "Tricult",
+      category: "Immersive Gaming Hub",
+      image: tricultImg,
+      description: "A next-generation gaming platform that integrates social interaction with high-performance browser gaming.",
+      problem: "Fragmented gaming experiences and high entry barriers for social game integration.",
+      solution: "Developed a centralized hub with real-time multiplayer support and community-driven content.",
+      impact: "Onboarded 5,000+ active players within the first month of beta testing.",
+      tags: ["Next.js", "Socket.io", "Game Dev", "Tailwind"],
+      github: "https://github.com/akshayka2004",
+      link: "https://tricult-project.vercel.app"
     },
     {
       title: "Face Finder",
@@ -44,29 +56,17 @@ const Projects = () => {
       impact: "Enabled sub-second retrieval of photos from libraries exceeding 10,000+ items with high precision.",
       tags: ["Next.js", "Vercel Blob", "Face-API.js", "Tailwind"],
       github: "https://github.com/akshayka2004",
-      link: "#"
+      link: "https://face-finder-lilac.vercel.app"
     },
     {
-      title: "AI Entrepreneur Assistant",
-      category: "Full-Stack Orchestration",
-      image: aiAssistantImg,
-      description: "An intelligent platform that uses orchestrated AI agents to help entrepreneurs build business strategies and manage project lifecycles.",
-      problem: "Founders often lack a unified view of strategy, task management, and market intelligence.",
-      solution: "Built a backend orchestration layer that coordinates specialized AI agents to generate roadmaps and track KPIs.",
-      impact: "Streamlined the project initialization phase for startups by providing automated, data-driven strategic insights.",
-      tags: ["React", "Python", "LangChain", "OpenAI"],
-      github: "https://github.com/akshayka2004",
-      link: "#"
-    },
-    {
-      title: "Disease Prediction",
-      category: "Machine Learning / Health-Tech",
-      image: diseaseImg,
-      description: "A research-driven ML application that analyzes user symptoms to predict potential health conditions with high accuracy.",
-      problem: "Early diagnosis is often delayed due to lack of immediate access to medical screening tools.",
-      solution: "Developed and trained classification models on clinical datasets to identify symptom patterns for various diseases.",
-      impact: "Achieved 95%+ prediction accuracy across 40+ different conditions, serving as a powerful preliminary screening tool.",
-      tags: ["Python", "Scikit-Learn", "Flask", "Pandas"],
+      title: "Token System",
+      category: "Secure API Management",
+      image: tokenSystemImg,
+      description: "A sophisticated token management system for secure API distribution and consumption.",
+      problem: "Insecure API key handling and lack of granular access control in distributed systems.",
+      solution: "Engineered a zero-trust architecture for dynamic token rotation and real-time monitoring.",
+      impact: "Eliminated unauthorized API access and simplified developer onboarding.",
+      tags: ["Backend", "Security", "Tokenization", "AWS"],
       github: "https://github.com/akshayka2004",
       link: "#"
     }
@@ -167,9 +167,11 @@ const Projects = () => {
                 <div className="pt-6">
                   <a 
                     href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary hover:-translate-y-2 transition-all duration-700 ease-[0.23,1,0.32,1] shadow-2xl shadow-black/5 group"
                   >
-                    Deep Dive Case Study
+                    Try it out
                     <ArrowRight size={18} className="transform group-hover:translate-x-2 transition-transform duration-700 ease-out" />
                   </a>
                 </div>
