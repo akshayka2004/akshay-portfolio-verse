@@ -1,7 +1,7 @@
 import React from 'react';
 import { GraduationCap, MapPin, Lightbulb, Code2, Rocket, BarChart, Heart, Camera, Plane } from 'lucide-react';
 import { motion } from 'framer-motion';
-import profileImage from '../assets/akshay-profile.jpg';
+import profileImage from '../assets/akshay-profile.webp';
 
 const About = () => {
   const workflow = [
