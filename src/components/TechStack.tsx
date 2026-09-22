@@ -62,6 +62,17 @@ const techItems: TechItem[] = [
     ),
   },
   {
+    name: 'TypeScript',
+    category: 'Languages',
+    icon: (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+        <rect width="24" height="24" rx="4" fill="#3178C6" />
+        <path d="M12.5 10H7.5V12H9V19H11V12H12.5V10Z" fill="white" />
+        <path d="M18.5 12C18.5 10.5 17 10 15.5 10C13.8 10 13 11 13 12C13 14 15.5 14 15.5 15.5C15.5 16.5 14.5 17 13.5 17C12.5 17 12 16.5 12 15.5H10C10 17.5 11.5 19 13.5 19C15.5 19 17.5 18 17.5 15.5C17.5 13.5 15 13 15 12C15 11.5 15.5 11 16.5 11C17.5 11 18 11.5 18 12H18.5Z" fill="white" />
+      </svg>
+    ),
+  },
+  {
     name: 'FastAPI',
     category: 'Backend',
     icon: (
@@ -100,6 +111,16 @@ const techItems: TechItem[] = [
         <circle cx="9" cy="9.5" r="1.5" fill="white" />
         <circle cx="15" cy="9.5" r="1.5" fill="white" />
         <path d="M10 13H14C14 15 13 16 12 16C11 16 10 15 10 13Z" fill="white" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Prisma',
+    category: 'Database',
+    icon: (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+        <path d="M4 19L12 3L20 19H4Z" stroke="#2D3748" strokeWidth="2" strokeLinejoin="round" fill="#2D3748" />
+        <path d="M12 3L16 19" stroke="white" strokeWidth="1.5" />
       </svg>
     ),
   },
@@ -167,14 +188,23 @@ const TechStack = () => {
     ? techItems
     : techItems.filter(item => item.category === activeTab);
 
+  // Triple items for seamless continuous looping in infinite marquee
+  const marqueeItems = [...filteredItems, ...filteredItems, ...filteredItems];
+
   return (
-    <section className="py-12 bg-white border-b border-slate-100">
+    <section className="py-12 bg-white border-b border-slate-100 overflow-hidden">
       <div className="container-portfolio">
         {/* Section Header with Filter Tabs */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Tech Stack
-          </h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+              Tech Stack
+            </h2>
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping" />
+              Continuous Flow
+            </span>
+          </div>
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap items-center gap-1 sm:gap-2">
@@ -198,18 +228,18 @@ const TechStack = () => {
           </div>
         </div>
 
-        {/* Tech Badges Horizontal Strip */}
-        <div className="pt-2 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-6 sm:gap-8 min-w-max pb-2">
-            {filteredItems.map((tech) => (
+        {/* Running Marquee Strip */}
+        <div className="relative w-full overflow-hidden marquee-mask py-2">
+          <div className="animate-marquee flex items-center gap-6 sm:gap-8">
+            {marqueeItems.map((tech, index) => (
               <div
-                key={tech.name}
-                className="flex items-center gap-2 group cursor-pointer hover:-translate-y-0.5 transition-transform duration-200"
+                key={`${tech.name}-${index}`}
+                className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-50/60 hover:bg-blue-50/60 border border-slate-200/70 hover:border-blue-300 transition-all duration-200 group cursor-pointer shrink-0 select-none shadow-xs"
               >
-                <div className="p-1 rounded-md group-hover:scale-110 transition-transform">
+                <div className="p-0.5 rounded-md group-hover:scale-110 transition-transform">
                   {tech.icon}
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-slate-700 group-hover:text-slate-950 transition-colors">
+                <span className="text-xs sm:text-sm font-medium text-slate-700 group-hover:text-blue-700 transition-colors whitespace-nowrap">
                   {tech.name}
                 </span>
               </div>
