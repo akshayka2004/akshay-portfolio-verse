@@ -1,126 +1,175 @@
 import React from 'react';
-import { GraduationCap, MapPin, Lightbulb, Code2, Rocket, BarChart, Heart, Camera, Plane } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { GraduationCap, MapPin, Lightbulb, Code2, Rocket, BarChart3, Award, Camera, Compass, MessageSquare } from 'lucide-react';
 import profileImage from '../assets/akshay-profile.webp';
 
 const About = () => {
   const workflow = [
-    { icon: <Lightbulb size={28} />, title: 'Conceptualize', desc: 'Distilling complex requirements into elegant technical architectures.' },
-    { icon: <Code2 size={28} />, title: 'Engineer', desc: 'Building high-performance, maintainable systems with modern tech stacks.' },
-    { icon: <Rocket size={28} />, title: 'Deploy', desc: 'Automating delivery pipelines for seamless, production-grade releases.' },
-    { icon: <BarChart size={28} />, title: 'Scale', desc: 'Monitoring and optimizing performance to handle evolving business needs.' }
+    {
+      icon: <Lightbulb className="text-blue-600" size={24} />,
+      title: 'Conceptualize',
+      desc: 'Deconstructing complex operational problems into modular backend system designs.'
+    },
+    {
+      icon: <Code2 className="text-blue-600" size={24} />,
+      title: 'Engineer',
+      desc: 'Developing resilient RESTful APIs, relational schemas, and asynchronous job workers.'
+    },
+    {
+      icon: <Rocket className="text-blue-600" size={24} />,
+      title: 'Deploy',
+      desc: 'Containerizing services with Docker and configuring reliable continuous delivery.'
+    },
+    {
+      icon: <BarChart3 className="text-blue-600" size={24} />,
+      title: 'Scale & Monitor',
+      desc: 'Profiling database query bottlenecks, caching strategies, and telemetry logs.'
+    }
   ];
 
   return (
-    <section id="about" className="section-padding bg-white relative overflow-hidden">
+    <section id="about" className="py-20 bg-slate-50/60 border-t border-b border-slate-100">
       <div className="container-portfolio">
-        {/* Profile & Bio Section */}
-        <div className="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center mb-48">
-          <motion.div 
-            className="relative order-2 lg:order-1"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          >
-            <div className="card-premium p-4 relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-slate-100 relative group">
-                <img 
-                  src={profileImage} 
-                  alt="Akshay K A" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-[0.23,1,0.32,1]"
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
+            About Me
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-4">
+            Engineering with Purpose & Precision
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal">
+            Bridging academic rigor in computer applications with practical expertise in building scalable, production-grade systems.
+          </p>
+        </div>
+
+        {/* Bio & Academic Highlights */}
+        <div className="grid lg:grid-cols-12 gap-10 items-center mb-16">
+          {/* Left Column: Bio Card */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm space-y-5">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                Hi, I'm Akshay K A — Backend Engineer & Innovator
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Currently pursuing an integrated Master of Computer Applications (MCA) at Saintgits College of Engineering, Kottayam. My journey revolves around architecting robust backend APIs, modeling relational databases, and integrating intelligent vector-search & AI workflows into practical products.
+              </p>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Whether creating a hypermarket management portal handling high transaction volumes or training credit scoring models on transactional histories, I strive for clean architecture, low latency, and measurable business utility.
+              </p>
+
+              {/* Education Highlight Box */}
+              <div className="p-5 rounded-2xl bg-blue-50/70 border border-blue-100 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm shadow-blue-500/20">
+                  <GraduationCap size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-base">Integrated MCA (5-Year Course)</h4>
+                  <p className="text-xs text-slate-600 font-medium mt-0.5 flex items-center gap-1.5">
+                    <MapPin size={13} className="text-blue-600" /> Saintgits College of Engineering • 2022 – 2027
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 mt-2.5">
+                    <span className="text-[11px] font-semibold text-blue-700 bg-white px-2.5 py-0.5 rounded-md border border-blue-200">
+                      Current Semester: 9
+                    </span>
+                    <span className="text-[11px] font-semibold text-blue-700 bg-white px-2.5 py-0.5 rounded-md border border-blue-200">
+                      Latest SGPA: 8.45
+                    </span>
+                    <span className="text-[11px] font-semibold text-blue-700 bg-white px-2.5 py-0.5 rounded-md border border-blue-200">
+                      Current CGPA: 8.45
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Visual Portrait & Stats */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="w-full max-w-sm bg-white rounded-3xl p-4 border border-slate-200/80 shadow-sm">
+              <div className="aspect-[4/4.5] rounded-2xl overflow-hidden bg-slate-100 relative">
+                <img
+                  src={profileImage}
+                  alt="Akshay K A"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
-              
-              {/* Floating Badge */}
-              <div className="absolute -bottom-10 -right-10 bg-black text-white p-8 rounded-[2rem] shadow-2xl flex flex-col items-center gap-2 border border-white/10 hidden md:flex">
-                <span className="text-3xl font-black tracking-tighter uppercase">50+</span>
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/50 text-center">Modules Built</span>
+              <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Core Stack</p>
+                  <p className="text-sm font-bold text-slate-900">Python • Node.js • MySQL</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-slate-500 font-medium">Location</p>
+                  <p className="text-sm font-bold text-slate-900">Kerala, India</p>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
+        </div>
 
-          <motion.div 
-            className="space-y-12 order-1 lg:order-2"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          >
-            <div className="space-y-8">
-              <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">The Philosophy</span>
-              <h3 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-foreground leading-[0.85] uppercase tracking-tighter">Engineering with <br /> <span className="text-gradient">Purpose & Precision</span></h3>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium tracking-tight">
-                I'm a final-year MCA student at Saintgits College of Engineering, specializing in backend architecture and high-throughput systems. 
-              </p>
-              <p className="text-xl text-muted-foreground/70 leading-relaxed font-medium tracking-tight">
-                My approach combines academic rigor with a hands-on obsession for building production-grade software that solves real business bottlenecks.
-              </p>
-            </div>
+        {/* Engineering Methodology / Workflow */}
+        <div className="mb-16">
+          <h3 className="text-lg font-bold text-slate-900 mb-6 text-center">
+            How I Approach Engineering Systems
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {workflow.map((step, idx) => (
+              <div
+                key={step.title}
+                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  {step.icon}
+                </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">0{idx + 1}</span>
+                  <h4 className="font-bold text-slate-900 text-base">{step.title}</h4>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            <div className="flex items-center gap-8 p-10 bg-white border border-black/[0.04] rounded-[2.5rem] premium-shadow">
-              <div className="p-6 bg-black rounded-2xl text-white shadow-xl shadow-black/10">
-                <GraduationCap size={36} />
+        {/* Beyond the Stack / Interests */}
+        <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm">
+          <h3 className="text-lg font-bold text-slate-900 mb-6">Beyond the Code</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <MessageSquare size={20} />
               </div>
               <div>
-                <h4 className="text-2xl font-black text-foreground uppercase tracking-tight leading-none mb-2">MCA (Integrated)</h4>
-                <p className="text-[11px] text-muted-foreground flex items-center gap-3 font-black uppercase tracking-[0.2em]">
-                   <MapPin size={16} className="text-primary" /> Saintgits College • 2027
+                <h4 className="font-bold text-slate-900 text-sm">Debate & Public Speaking</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Engaging in structured intellectual discussions, hackathon pitching, and tech community symposiums.
                 </p>
               </div>
             </div>
-          </motion.div>
-        </div>
 
-        {/* Workflow Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-48">
-          {workflow.map((item, idx) => (
-            <motion.div 
-              key={item.title}
-              className="card-premium group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <div className="p-6 bg-black rounded-2xl w-fit mb-10 text-white group-hover:scale-110 transition-all duration-1000 ease-[0.23,1,0.32,1] shadow-xl">
-                {item.icon}
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <Camera size={20} />
               </div>
-              <h4 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter leading-none">{item.title}</h4>
-              <p className="text-base text-muted-foreground leading-relaxed font-medium tracking-tight">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+              <div>
+                <h4 className="font-bold text-slate-900 text-sm">Visual Photography</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Capturing moments, natural lighting, and perspectives through portrait and landscape lenses.
+                </p>
+              </div>
+            </div>
 
-        {/* Personal Edge Section */}
-        <div className="pt-40 border-t border-black/[0.04]">
-          <div className="text-center mb-32 space-y-6">
-            <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">The Personal Edge</span>
-            <h2 className="text-5xl md:text-8xl font-black text-foreground uppercase tracking-tighter leading-none">Beyond the Stack</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {[
-              { icon: <Heart size={48} />, title: 'Music & Debate', desc: 'Passionate about intellectual discussions and the rhythm of diverse soundscapes.' },
-              { icon: <Camera size={48} />, title: 'Photography', desc: 'Capturing moments and perspectives through a lens, finding beauty in the details.' },
-              { icon: <Plane size={48} />, title: 'Exploration', desc: 'Traveler at heart, always seeking new cultures, terrains, and experiences.' }
-            ].map((item, idx) => (
-              <motion.div 
-                key={item.title}
-                className="flex flex-col items-center text-center group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <div className="w-32 h-32 bg-black rounded-[3rem] flex items-center justify-center text-white mb-12 group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-1000 ease-[0.23,1,0.32,1] shadow-2xl">
-                  {item.icon}
-                </div>
-                <h4 className="text-3xl font-black text-foreground mb-6 uppercase tracking-tighter leading-none">{item.title}</h4>
-                <p className="text-xl text-muted-foreground font-medium leading-relaxed tracking-tight">{item.desc}</p>
-              </motion.div>
-            ))}
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                <Compass size={20} />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 text-sm">Travel & Exploration</h4>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Exploring diverse cultures, regional communities, and outdoor trails across India.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -129,4 +178,3 @@ const About = () => {
 };
 
 export default About;
-

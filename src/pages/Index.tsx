@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import About from '../components/About';
-import Capabilities from '../components/Skills';
+import TechStack from '../components/TechStack';
 import Projects from '../components/Projects';
+import About from '../components/About';
+import Experience from '../components/Experience';
+import Skills from '../components/Skills';
+import Certifications from '../components/Certifications';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/30 selection:text-primary-dark">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-600/15 selection:text-blue-700">
       <Header />
       <main>
         <Hero />
-        <About />
-        <Capabilities />
+        <TechStack />
         <Projects />
+        <About />
+        <Experience />
+        <Skills />
+        <Certifications />
         <Contact />
       </main>
       <Footer />
@@ -24,4 +30,3 @@ const Index = () => {
 };
 
 export default Index;
-

@@ -1,14 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ArrowRight, Send, Github, Linkedin } from 'lucide-react';
+
+export const AKLogo = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Modern stylized A & K ribbon monogram */}
+    <path d="M8 32L17.5 8H22.5L13 32H8Z" fill="#2563EB" />
+    <path d="M21 21L29.5 8H35L25 22.5L21 21Z" fill="#1D4ED8" />
+    <path d="M23 19.5L33 32H27.5L19 21.5L23 19.5Z" fill="#2563EB" />
+    <path d="M11.5 24.5H23.5V21.5H12.8L11.5 24.5Z" fill="#3B82F6" />
+  </svg>
+);
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
+
+      const sections = ['home', 'about', 'projects', 'experience', 'skills', 'certifications', 'contact'];
+      const scrollPosition = window.scrollY + 120;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -32,98 +57,147 @@ const Header = () => {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'Journey' },
-    { id: 'skills', label: 'Capabilities' },
-    { id: 'projects', label: 'Case Studies' },
-    { id: 'contact', label: 'Connect' }
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Certifications' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-1000 ease-quintic ${
-      isScrolled ? 'py-4' : 'py-10'
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 py-3.5' : 'bg-white/80 backdrop-blur-sm py-4'
     }`}>
-      <div className="container-portfolio">
-        <div className={`mx-auto transition-all duration-1000 ease-quintic rounded-[2.5rem] ${
-          isScrolled ? 'bg-white/70 backdrop-blur-2xl px-10 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.05)] max-w-6xl border border-white/50' : 'bg-transparent px-0 py-0'
-        }`}>
-          <div className="flex items-center justify-between h-16">
-            <div 
-              className="text-2xl font-black tracking-tighter cursor-pointer flex items-center gap-4 group"
-              onClick={() => scrollToSection('home')}
-            >
-              <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center text-white group-hover:rotate-[15deg] transition-all duration-1000 ease-quintic shadow-2xl">
-                <Rocket size={24} />
-              </div>
-              <span className="text-gradient uppercase text-xl font-black tracking-tighter leading-none">Akshay.Dev</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/60 hover:text-black transition-all duration-1000 ease-quintic relative group"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-black transition-all duration-1000 ease-quintic group-hover:w-1/3" />
-                </button>
-              ))}
-              <div className="pl-8">
-                <button 
-                  onClick={() => scrollToSection('contact')}
-                  className="px-10 py-3.5 bg-black text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-2xl hover:bg-primary hover:-translate-y-2 transition-all duration-1000 ease-quintic shadow-2xl shadow-black/10"
-                >
-                  Launch Build
-                </button>
-              </div>
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-4 rounded-2xl bg-black/5 hover:bg-black/10 transition-all duration-700"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+      <div className="container-portfolio flex items-center justify-between">
+        {/* Left: Brand Logo & Name */}
+        <div 
+          onClick={() => scrollToSection('home')}
+          className="flex items-center gap-3 cursor-pointer group select-none"
+        >
+          <AKLogo className="w-9 h-9 transition-transform group-hover:scale-105 duration-200" />
+          <span className="font-bold text-xl tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+            Akshay K A
+          </span>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.nav 
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-              className="md:hidden mt-6 bg-white/90 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.1)] border border-white/50"
-            >
-              <div className="flex flex-col p-6">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-left px-8 py-6 text-xl font-black text-foreground hover:bg-black hover:text-white rounded-2xl transition-all duration-700 uppercase tracking-tighter"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-                <div className="p-6 pt-10">
-                  <button 
-                    onClick={() => scrollToSection('contact')}
-                    className="w-full py-8 bg-black text-white rounded-3xl font-black uppercase tracking-[0.4em] text-xs shadow-2xl"
-                  >
-                    Launch Build
-                  </button>
-                </div>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+        {/* Center: Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`relative px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                  isActive ? 'text-blue-600 font-semibold' : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                {item.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-blue-600 rounded-full" />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Right: Socials & Connect CTA */}
+        <div className="hidden sm:flex items-center gap-3">
+          <a
+            href="https://github.com/akshayka2004"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            className="p-2 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors"
+          >
+            <Github size={19} />
+          </a>
+          <a
+            href="https://linkedin.com/in/akshay-k-a-254872253"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            className="p-1.5 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors flex items-center justify-center w-7 h-7 shadow-sm"
+          >
+            <Linkedin size={16} />
+          </a>
+
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contact');
+            }}
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all shadow-sm ml-1 group"
+          >
+            <Send size={13} className="text-slate-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <span>Let's Connect</span>
+            <ArrowRight size={13} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {/* Mobile Drawer */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white border-b border-slate-200 px-6 py-4 shadow-lg animate-in slide-in-from-top duration-200">
+          <div className="flex flex-col space-y-3">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`text-left py-2 text-base font-medium transition-colors ${
+                  activeSection === item.id ? 'text-blue-600 font-semibold' : 'text-slate-700'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/akshayka2004"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-slate-700 hover:text-slate-950 bg-slate-50 rounded-lg"
+                >
+                  <Github size={20} />
+                </a>
+                <a
+                  href="https://linkedin.com/in/akshay-k-a-254872253"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-white bg-blue-600 rounded-lg"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('contact');
+                }}
+                className="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-semibold"
+              >
+                <Send size={13} />
+                <span>Let's Connect</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
 
-export default Header;
+export default Header;

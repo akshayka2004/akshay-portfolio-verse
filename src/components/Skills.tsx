@@ -1,155 +1,107 @@
 import React from 'react';
-import { Server, Database, Brain, Globe, Cpu, Zap, Layout, ShieldCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Server, Database, Brain, ShieldCheck, Terminal, Layers, Cpu, Cloud } from 'lucide-react';
 
-const Capabilities = () => {
-  const capabilities = [
-    {
-      title: 'Scalable SaaS Platforms',
-      description: 'Engineering production-ready web applications with a focus on scalability, maintainability, and exceptional user experience.',
-      icon: <Layout className="text-primary" size={28} />,
-      features: ['Multi-tenant Architecture', 'Responsive UI/UX', 'Performance Optimization', 'Cloud Integration'],
-      color: 'from-blue-500/10 to-indigo-500/10'
-    },
-    {
-      title: 'High-Performance APIs',
-      description: 'Designing robust backend systems and RESTful services that power complex workflows and handle high concurrent traffic.',
-      icon: <Server className="text-primary" size={28} />,
-      features: ['Microservices', 'Real-time Data', 'Secure Authentication', 'Database Modeling'],
-      color: 'from-emerald-500/10 to-teal-500/10'
-    },
-    {
-      title: 'Data Intelligence',
-      description: 'Leveraging machine learning and predictive analytics to transform raw data into actionable business insights.',
-      icon: <Brain className="text-primary" size={28} />,
-      features: ['Predictive Modeling', 'Data Visualization', 'Statistical Analysis', 'Pattern Recognition'],
-      color: 'from-purple-500/10 to-pink-500/10'
-    },
-    {
-      title: 'Systems & DevOps',
-      description: 'Ensuring 99.9% uptime through automated pipelines, containerization, and rigorous system architecture design.',
-      icon: <ShieldCheck className="text-primary" size={28} />,
-      features: ['CI/CD Pipelines', 'Dockerization', 'Linux Administration', 'Security Auditing'],
-      color: 'from-amber-500/10 to-orange-500/10'
-    }
-  ];
+const skillCategories = [
+  {
+    title: 'Backend & API Engineering',
+    icon: <Server className="text-blue-600" size={24} />,
+    description: 'Designing high-throughput microservices, RESTful interfaces, and event-driven worker queues.',
+    skills: ['Python', 'Node.js', 'FastAPI', 'NestJS', 'Express.js', 'Django', 'REST APIs', 'BullMQ']
+  },
+  {
+    title: 'Databases & Query Optimization',
+    icon: <Database className="text-blue-600" size={24} />,
+    description: 'Schema modeling, indexing, ACID transactions, and spatial queries for relational & NoSQL stores.',
+    skills: ['MySQL', 'PostgreSQL', 'PostGIS', 'Prisma ORM', 'SQLAlchemy', 'Redis', 'SQLite']
+  },
+  {
+    title: 'AI, ML & Vector Search',
+    icon: <Brain className="text-blue-600" size={24} />,
+    description: 'Applied machine learning, vector similarity search, computer vision models, and tabular analytics.',
+    skills: ['FAISS Vector Search', 'Scikit-learn', 'OpenCV', 'Pandas', 'NumPy', 'YOLOv3', 'Prompt Engineering']
+  },
+  {
+    title: 'DevOps, Cloud & Platforms',
+    icon: <Cloud className="text-blue-600" size={24} />,
+    description: 'Containerized deployments, automated CI/CD pipelines, and robust cloud configurations.',
+    skills: ['Docker', 'AWS (EC2, S3)', 'Git & GitHub', 'Linux / Bash', 'Vercel', 'Postman API Testing']
+  }
+];
 
-  const techStack = [
-    { category: 'Languages', items: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'C++'] },
-    { category: 'Frameworks', items: ['React', 'Next.js', 'Node.js', 'NestJS', 'Express'] },
-    { category: 'Infrastructure', items: ['Docker', 'Git', 'Linux', 'REST APIs', 'PostgreSQL'] },
-    { category: 'AI/ML', items: ['Scikit-learn', 'Pandas', 'NumPy', 'Data Analysis'] }
-  ];
-
+const Skills = () => {
   return (
-    <section id="skills" className="section-padding bg-background relative overflow-hidden">
+    <section id="skills" className="py-20 bg-slate-50/60 border-t border-b border-slate-100">
       <div className="container-portfolio">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-12">
-          <div className="max-w-4xl">
-            <motion.h2 
-              className="text-[clamp(3rem,10vw,6rem)] font-black text-foreground mb-8 leading-[0.85] uppercase tracking-tighter"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-            >
-              Strategic <span className="text-gradient">Capabilities</span>
-            </motion.h2>
-            <motion.p 
-              className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-medium tracking-tight"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 1, ease: [0.23, 1, 0.32, 1] }}
-            >
-              Bridging the gap between complex engineering requirements and production-grade product architecture.
-            </motion.p>
-          </div>
-          <motion.div 
-            className="flex items-center gap-4 px-8 py-4 bg-black text-white rounded-2xl shadow-2xl"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1, ease: [0.23, 1, 0.32, 1] }}
-          >
-            <Zap className="text-primary animate-pulse" size={24} />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em]">Full-Stack Master</span>
-          </motion.div>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
+            Skills & Capabilities
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-4">
+            Technical Expertise
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal">
+            A comprehensive overview of tools, frameworks, and architectural domains I leverage to build production software.
+          </p>
         </div>
 
-        {/* Capability Cards */}
-        <div className="grid md:grid-cols-2 gap-12 mb-40">
-          {capabilities.map((cap, index) => (
-            <motion.div
-              key={cap.title}
-              className="card-premium group relative overflow-hidden"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: index * 0.1, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+        {/* 4 Capability Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-14">
+          {skillCategories.map((cat) => (
+            <div
+              key={cat.title}
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="space-y-10 relative z-10">
-                <div className="flex items-center gap-8">
-                  <div className="p-6 bg-primary/[0.04] rounded-3xl border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-1000 ease-[0.23,1,0.32,1]">
-                    {React.cloneElement(cap.icon as React.ReactElement, { size: 36, className: "group-hover:text-white transition-colors duration-1000" })}
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100/60">
+                    {cat.icon}
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black text-foreground tracking-tighter uppercase leading-none">
-                    {cap.title}
+                  <h3 className="text-lg font-bold text-slate-900 tracking-tight">
+                    {cat.title}
                   </h3>
                 </div>
-                <p className="text-xl text-muted-foreground leading-relaxed tracking-tight">
-                  {cap.description}
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
+                  {cat.description}
                 </p>
-                <div className="grid grid-cols-2 gap-x-12 gap-y-6 pt-10 border-t border-black/[0.04]">
-                  {cap.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-4 text-sm font-black text-foreground uppercase tracking-tight group-hover:translate-x-2 transition-transform duration-700 ease-out">
-                      <div className="w-2 h-2 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-700" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
               </div>
-            </motion.div>
+
+              {/* Skills Tags */}
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
+                {cat.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-medium rounded-lg border border-slate-200/60 transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Technical Arsenal Grid */}
-        <div className="space-y-24">
-          <div className="text-center space-y-6">
-            <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">The Architecture</span>
-            <h3 className="text-4xl md:text-7xl font-black text-foreground uppercase tracking-tighter leading-none">Technical Arsenal</h3>
+        {/* Summary Metric Strip */}
+        <div className="max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 font-bold">
+              ✓
+            </div>
+            <div>
+              <p className="font-bold text-slate-900 text-sm">Full-Lifecycle Backend Competence</p>
+              <p className="text-xs text-slate-500 font-normal">From conceptual API spec & schema design to production containerization.</p>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-            {techStack.map((stack, index) => (
-              <motion.div 
-                key={stack.category}
-                className="space-y-8"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary bg-primary/[0.04] px-6 py-2 rounded-full w-fit border border-primary/10">
-                  {stack.category}
-                </h4>
-                <div className="flex flex-wrap gap-4">
-                  {stack.items.map((item) => (
-                    <span 
-                      key={item}
-                      className="px-6 py-3 bg-white border border-black/[0.06] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 hover:-translate-y-2 hover:border-primary/30 hover:text-primary transition-all duration-700 ease-[0.23,1,0.32,1] shadow-sm cursor-default"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <a
+            href="#projects"
+            className="text-xs font-semibold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100/80 px-4 py-2 rounded-lg transition-colors shrink-0"
+          >
+            Explore Projects in Action →
+          </a>
         </div>
       </div>
     </section>
   );
 };
 
-export default Capabilities;
+export default Skills;
