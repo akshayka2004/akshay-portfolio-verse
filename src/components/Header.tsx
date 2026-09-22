@@ -3,11 +3,24 @@ import { Menu, X, ArrowRight, Send, Github, Linkedin } from 'lucide-react';
 
 export const AKLogo = ({ className = "w-8 h-8" }: { className?: string }) => (
   <svg viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Modern stylized A & K ribbon monogram */}
-    <path d="M8 32L17.5 8H22.5L13 32H8Z" fill="#2563EB" />
-    <path d="M21 21L29.5 8H35L25 22.5L21 21Z" fill="#1D4ED8" />
-    <path d="M23 19.5L33 32H27.5L19 21.5L23 19.5Z" fill="#2563EB" />
-    <path d="M11.5 24.5H23.5V21.5H12.8L11.5 24.5Z" fill="#3B82F6" />
+    <defs>
+      <linearGradient id="ak-grad-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3B82F6" />
+        <stop offset="100%" stopColor="#1D4ED8" />
+      </linearGradient>
+      <linearGradient id="ak-grad-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#60A5FA" />
+        <stop offset="100%" stopColor="#2563EB" />
+      </linearGradient>
+    </defs>
+    {/* Left slant A */}
+    <path d="M7 32L17.5 8H22.5L12 32H7Z" fill="url(#ak-grad-primary)" />
+    {/* Crossbar & K connector */}
+    <path d="M11 23H22L20 19H12.8L11 23Z" fill="url(#ak-grad-accent)" />
+    {/* Upper K wing */}
+    <path d="M19.5 19L29 7.5H35L24 20.5L19.5 19Z" fill="url(#ak-grad-accent)" />
+    {/* Lower K leg */}
+    <path d="M22 18L33 32H27L18 20.5L22 18Z" fill="url(#ak-grad-primary)" />
   </svg>
 );
 
